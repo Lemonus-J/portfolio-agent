@@ -1,16 +1,13 @@
-import os
-import json
-
 from azure.storage.blob import BlobServiceClient
 from azure.identity import DefaultAzureCredential
 from azure.core.exceptions import ResourceNotFoundError, ClientAuthenticationError, AzureError
 from fastapi import FastAPI, HTTPException
+import json
 
 app = FastAPI()
 
 credential = DefaultAzureCredential()
-account_url = os.getenv("AZURE_STORAGE_ACCOUNT_URL")
-service = BlobServiceClient(account_url=account_url, credential=credential)
+service = BlobServiceClient(account_url="https://hwmportfoliostorage.blob.core.windows.net/", credential=credential)
 
 
 @app.get("/profile")
